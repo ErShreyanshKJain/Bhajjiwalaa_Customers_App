@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">Bhajjiwalaa</string>
+    <string name="register"><b><u>Register</u></b></string>
+    <string name="forgot_password"><u>Forgot Password?</u></string>
+    <string name="next">Next</string>
+    <string name="skip">Skip</string>
+
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+
+    <string name="item_1">Fruits</string>
+    <string name="item_2">Vegetables</string>
+
+    <string name="my_profile">My Profile</string>
+    <string name="my_orders">My Orders</string>
+    <string name="my_cart">My Cart</string>
+    <string name="my_account">My Account</string>
+
+    <string name="help_support">Help \u0026 Support</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="terms_conditions">Terms \u0026 Conditions</string>
+    <string name="help_center">Help Center</string>
+
+    <string name="search_hint">Search for Products, Brands and More</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="action_search">Search</string>
+    <string name="action_cart">Cart</string>
+    <string name="action_notifications">Notifications</string>
+
+    <string name="quantity_prompt">Select quantity</string>
+    <string-array name="quantity">
+        <item>250gm</item>
+        <item>500gm</item>
+        <item>750gm</item>
+        <item>1kg</item>
+        <item>2kg</item>
+        <item>3kg</item>
+        <item>4kg</item>
+        <item>5kg</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
