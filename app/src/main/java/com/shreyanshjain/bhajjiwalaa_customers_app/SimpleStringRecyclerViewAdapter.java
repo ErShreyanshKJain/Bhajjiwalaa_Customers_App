@@ -4,19 +4,25 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.shreyanshjain.bhajjiwalaa_customers_app.cart.CartCountSetClass;
+import com.shreyanshjain.bhajjiwalaa_customers_app.cart.SetAddButton;
+import com.shreyanshjain.bhajjiwalaa_customers_app.utiltity.ImageUrlUtils;
 
-public class SimpleStringRecyclerViewAdapter extends RecyclerView.Adapter<SimpleStringRecyclerViewAdapter.ViewHolder> {
+public class SimpleStringRecyclerViewAdapter extends RecyclerView.Adapter<SimpleStringRecyclerViewAdapter.ViewHolder>{
 
     private String[] mValues;
     private RecyclerView mRecyclerView;
     private MainActivity mainActivity;
+    String url;
 
     @NonNull
     @Override
@@ -26,12 +32,43 @@ public class SimpleStringRecyclerViewAdapter extends RecyclerView.Adapter<Simple
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SimpleStringRecyclerViewAdapter.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull final SimpleStringRecyclerViewAdapter.ViewHolder viewHolder, int i) {
 
         Glide.with(mainActivity)
                 .load(mValues[i])
                 .centerCrop()
                 .into(viewHolder.item_image);
+
+//        CartListAdapter.setSetAddButton(SimpleStringRecyclerViewAdapter.this);
+        final int id = i;
+        viewHolder.add_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ImageUrlUtils imageUrlUtils = new ImageUrlUtils();
+                imageUrlUtils.addCartListImageUrl(mValues[id]);
+                Toast.makeText(mainActivity.getApplicationContext(),"Item added to the cart",Toast.LENGTH_SHORT).show();
+                MainActivity.notificationCountCart++;
+                CartCountSetClass.setNotifyCount(MainActivity.notificationCountCart);
+                viewHolder.add_btn.setVisibility(View.GONE);
+                viewHolder.item_amt.setText(R.string.item_in_cart);
+                viewHolder.item_amt.setTextSize(TypedValue.COMPLEX_UNIT_SP,15);
+            }
+        });
+
+        /*
+        * TODO: Add code to get back the add button for a particular item if it is removed from the cart
+        * */
+        /*
+        * We can put a condition to check for an item that whether it is currently present in the
+        * cartList or not. If it is present than remove the add button and if it is not then get
+        * put the add button(if removed) or just let it be there
+        * */
+//        if(url!= null && url.equals(mValues[i])){
+//            viewHolder.add_btn.setVisibility(View.VISIBLE);
+//            viewHolder.item_amt.setText("Rs.   ");
+//            viewHolder.item_amt.setTextSize(TypedValue.COMPLEX_UNIT_SP,20);
+//        }
+
     }
 
     @Override
@@ -44,6 +81,11 @@ public class SimpleStringRecyclerViewAdapter extends RecyclerView.Adapter<Simple
         mRecyclerView = recyclerView;
         mainActivity = mActivity;
     }
+
+//    @Override
+//    public void setImageUrl(String url) {
+//           this.url = url;
+//    }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
 

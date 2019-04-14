@@ -40,6 +40,5 @@
         <item>5kg</item>
     </string-array>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="item_in_cart">Item is already in the cart</string>
 </resources>

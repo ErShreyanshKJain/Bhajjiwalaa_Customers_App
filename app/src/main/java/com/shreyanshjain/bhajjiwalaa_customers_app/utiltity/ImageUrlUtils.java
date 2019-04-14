@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class ImageUrlUtils {
 
-    static ArrayList<String> wishlistImageUrl = new ArrayList<>();
     static ArrayList<String> cartListImageUrl = new ArrayList<>();
 
     public static String[] getFruitUrls() {
@@ -40,10 +39,15 @@ public class ImageUrlUtils {
         return urls;
     }
 
-    public void addWishlistImageUrl(String wishImageUrl)
-    {
-        this.wishlistImageUrl.add(0,wishImageUrl);
+    // Methods for Cart
+    public void addCartListImageUrl(String wishlistImageUri) {
+        this.cartListImageUrl.add(0,wishlistImageUri);
     }
 
+    public void removeCartListImageUrl(int position) {
+        this.cartListImageUrl.remove(position);
+    }
+
+    public ArrayList<String> getCartListImageUrl(){ return this.cartListImageUrl; }
 
 }

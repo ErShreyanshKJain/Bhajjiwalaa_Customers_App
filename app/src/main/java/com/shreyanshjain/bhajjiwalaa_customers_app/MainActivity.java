@@ -5,13 +5,11 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -21,11 +19,11 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
+import com.shreyanshjain.bhajjiwalaa_customers_app.cart.CartCountSetClass;
+import com.shreyanshjain.bhajjiwalaa_customers_app.cart.CartListActivity;
 import com.shreyanshjain.bhajjiwalaa_customers_app.fragment.ImageListFragment;
-import com.shreyanshjain.bhajjiwalaa_customers_app.fragment.OfflineFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -164,7 +162,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Get the notifications MenuItem and
         // its LayerDrawable (layer-list)
         MenuItem item = menu.findItem(R.id.action_cart);
-//        NotificationCountSetClass.setAddToCart(MainActivity.this, item,notificationCountCart);
+        CartCountSetClass.setAddToCart(MainActivity.this, item,notificationCountCart);
         // force the ActionBar to relayout its MenuItems.
         // onCreateOptionsMenu(Menu) will be called again.
         invalidateOptionsMenu();

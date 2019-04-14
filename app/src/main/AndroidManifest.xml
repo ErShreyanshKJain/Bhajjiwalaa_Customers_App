@@ -26,7 +26,7 @@
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait"/>
-        <activity android:name=".CartListActivity"
+        <activity android:name=".cart.CartListActivity"
             android:screenOrientation="portrait"></activity>
         <activity android:name=".SearchActivity"
             android:screenOrientation="portrait"/>

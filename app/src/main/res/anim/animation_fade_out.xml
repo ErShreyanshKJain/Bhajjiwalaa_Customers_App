@@ -4,4 +4,8 @@
         android:toAlpha="0.0"
         android:fromAlpha="1.0"
         android:duration="1000"/>
+
+    <scale
+        android:toXScale="0"
+        android:toYScale="0"/>
 </set>
