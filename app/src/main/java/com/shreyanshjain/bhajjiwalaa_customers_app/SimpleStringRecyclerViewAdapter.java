@@ -63,11 +63,17 @@ public class SimpleStringRecyclerViewAdapter extends RecyclerView.Adapter<Simple
         * cartList or not. If it is present than remove the add button and if it is not then get
         * put the add button(if removed) or just let it be there
         * */
-//        if(url!= null && url.equals(mValues[i])){
-//            viewHolder.add_btn.setVisibility(View.VISIBLE);
-//            viewHolder.item_amt.setText("Rs.   ");
-//            viewHolder.item_amt.setTextSize(TypedValue.COMPLEX_UNIT_SP,20);
-//        }
+        ImageUrlUtils img = new ImageUrlUtils();
+        if(!img.getCartListImageUrl().contains(mValues[i]) ){
+            viewHolder.add_btn.setVisibility(View.VISIBLE);
+            viewHolder.item_amt.setText("Rs.   ");
+            viewHolder.item_amt.setTextSize(TypedValue.COMPLEX_UNIT_SP,20);
+//            notifyDataSetChanged();
+        }else{
+            viewHolder.add_btn.setVisibility(View.GONE);
+            viewHolder.item_amt.setText(R.string.item_in_cart);
+            viewHolder.item_amt.setTextSize(TypedValue.COMPLEX_UNIT_SP,15);
+        }
 
     }
 

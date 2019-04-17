@@ -82,14 +82,12 @@ public class BadgeDrawable extends Drawable {
 
     @Override
     public int getOpacity() {
-        // TODO Auto-generated method stub
         return PixelFormat.UNKNOWN;
     }
 
 
     @Override
     public void setColorFilter(ColorFilter cf) {
-        // TODO Auto-generated method stub
 
     }
 

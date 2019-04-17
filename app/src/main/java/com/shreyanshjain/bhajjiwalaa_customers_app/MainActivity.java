@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -19,11 +21,13 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.shreyanshjain.bhajjiwalaa_customers_app.cart.CartCountSetClass;
 import com.shreyanshjain.bhajjiwalaa_customers_app.cart.CartListActivity;
 import com.shreyanshjain.bhajjiwalaa_customers_app.fragment.ImageListFragment;
+import com.shreyanshjain.bhajjiwalaa_customers_app.fragment.OfflineFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,16 +58,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if(!isNetworkAvailable())
         {
-            /*
-            * TODO: Add code for Offline Fragment
-            * */
 //            CoordinatorLayout coordinatorLayout = findViewById(R.id.main_coordinator_layout);
 //            coordinatorLayout.setVisibility(View.GONE);
 //            drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-//            FragmentManager fm =getSupportFragmentManager();
-//            FragmentTransaction ft = fm.beginTransaction();
-//            ft.replace(R.id.main_drawer_layout,new OfflineFragment());
-//            ft.commit();
+            FragmentManager fm =getSupportFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            ft.replace(R.id.main_drawer_layout,new OfflineFragment());
+            ft.commit();
         }
         viewPager = findViewById(R.id.viewpager);
         tabLayout = findViewById(R.id.tabs);
@@ -75,8 +76,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    private void setupViewPager(ViewPager viewPager)
-    {
+    private void setupViewPager(ViewPager viewPager) {
         Toast.makeText(getApplicationContext(),"Setup View Pager",Toast.LENGTH_SHORT).show();
         Adapter adapter = new Adapter(getSupportFragmentManager());
         ImageListFragment fragment = new ImageListFragment();
@@ -100,6 +100,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             viewPager.setCurrentItem(0);
         } else if (id == R.id.nav_item2) {
             viewPager.setCurrentItem(1);
+        } else if (id == R.id.my_cart) {
+            startActivity(new Intent(MainActivity.this,CartListActivity.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.main_drawer_layout);
@@ -174,19 +176,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         int id=item.getItemId();
 
-        if(id==R.id.action_search)
-        {
-            startActivity(new Intent(MainActivity.this, SearchActivity.class));
+        if(id==R.id.action_search) {
+//            startActivity(new Intent(MainActivity.this, SearchActivity.class));
             return true;
-        }
-
-        else if(id==R.id.action_cart)
-        {
+        } else if(id==R.id.action_cart) {
             startActivity(new Intent(MainActivity.this, CartListActivity.class));
             return true;
-        }
-        else
-        {
+        } else {
         }
 
         return super.onOptionsItemSelected(item);
@@ -206,6 +202,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onResume() {
         super.onResume();
         invalidateOptionsMenu();
+//        notifyAll();
     }
 
 }

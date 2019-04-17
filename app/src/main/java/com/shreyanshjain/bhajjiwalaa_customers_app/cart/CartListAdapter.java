@@ -1,7 +1,10 @@
-package com.shreyanshjain.bhajjiwalaa_customers_app;
+package com.shreyanshjain.bhajjiwalaa_customers_app.cart;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
@@ -10,25 +13,33 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import com.bumptech.glide.Glide;
-import com.shreyanshjain.bhajjiwalaa_customers_app.cart.CartListActivity;
-import com.shreyanshjain.bhajjiwalaa_customers_app.cart.SetAddButton;
+import com.shreyanshjain.bhajjiwalaa_customers_app.MainActivity;
+import com.shreyanshjain.bhajjiwalaa_customers_app.R;
+import com.shreyanshjain.bhajjiwalaa_customers_app.fragment.EmptyCartFragment;
 import com.shreyanshjain.bhajjiwalaa_customers_app.utiltity.ImageUrlUtils;
 
 import java.util.ArrayList;
+
+import static android.view.View.GONE;
+import static java.lang.Thread.sleep;
 
 public class CartListAdapter
         extends RecyclerView.Adapter<CartListAdapter.ViewHolder>{
 
     private ArrayList<String> mCartListImageUrl;
     public Context mContext;
+    public View mView;
 
-    public CartListAdapter(ArrayList<String> cartListImageUrl, Context context){
+    public CartListAdapter(ArrayList<String> cartListImageUrl, Context context, View view){
         mCartListImageUrl = cartListImageUrl;
         mContext = context;
+        mView = view;
     }
 
     @NonNull
@@ -50,8 +61,8 @@ public class CartListAdapter
         viewHolder.itemDel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Animation fadeOut = AnimationUtils.loadAnimation(mContext,R.anim.animation_fade_out);
-//                fadeOut.setAnimationListener(new CartListActivity());
+                Animation fadeOut = AnimationUtils.loadAnimation(mContext,R.anim.animation_fade_out);
+                fadeOut.setAnimationListener(new CartListActivity());
 
 //                viewHolder.mView.setAnimation(fadeOut);
 
@@ -60,6 +71,7 @@ public class CartListAdapter
                 notifyDataSetChanged();
 
                 MainActivity.notificationCountCart--;
+
 //                if(setAddButtonListener!=null)
 //                    setAddButtonListener.setImageUrl(mCartListImageUrl.get(pos));
 
@@ -69,9 +81,11 @@ public class CartListAdapter
                     * TODO: Add code to bring back the empty cart layout
                     * */
 
-//                        LinearLayout layoutCartItems = view.findViewById(R.id.layout_items);
-//                        LinearLayout layoutCartPayments = view.findViewById(R.id.layout_payment);
-//                        LinearLayout layoutCartNoItems = view.findViewById(R.id.cart_empty_layout);
+//                    Intent i = new Intent(mContext,MainActivity.class);
+
+//                        LinearLayout layoutCartItems = mView.findViewById(R.id.layout_items);
+//                        LinearLayout layoutCartPayments = mView.findViewById(R.id.layout_payment);
+//                        LinearLayout layoutCartNoItems = mView.findViewById(R.id.empty_msg_layout);
 //
 //                        layoutCartItems.setVisibility(GONE);
 //                        layoutCartNoItems.setVisibility(View.VISIBLE);
@@ -94,6 +108,18 @@ public class CartListAdapter
 //            viewHolder.itemQty.setOnItemSelectedListener();
 
     }
+
+//    public void setEmptyFragment()
+//    {
+//        LinearLayout linearLayout = findViewById(R.id.layout_payment);
+//        linearLayout.setVisibility(GONE);
+//        FragmentManager fm = getSupportFragmentManager();
+//        FragmentTransaction ft = fm.beginTransaction();
+//        ft.add(R.id.activity_cart_list,new EmptyCartFragment());
+//        ft.commit();
+//
+//    }
+
 
 //    public static SetAddButton setAddButtonListener;
 //    public static void setSetAddButton(SetAddButton setAddButton){

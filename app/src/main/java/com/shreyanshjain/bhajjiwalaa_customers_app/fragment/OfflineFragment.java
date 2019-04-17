@@ -1,6 +1,7 @@
 package com.shreyanshjain.bhajjiwalaa_customers_app.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.shreyanshjain.bhajjiwalaa_customers_app.MainActivity;
 import com.shreyanshjain.bhajjiwalaa_customers_app.R;
 
 public class OfflineFragment extends Fragment {
@@ -38,7 +40,8 @@ public class OfflineFragment extends Fragment {
                 if (isNetworkAvailable())
                 {
                     constraintLayout.setVisibility(View.GONE);
-                    getActivity().recreate();
+//                    getActivity().recreate();
+                    startActivity(new Intent(getContext(), MainActivity.class));
                 }
             }
         });

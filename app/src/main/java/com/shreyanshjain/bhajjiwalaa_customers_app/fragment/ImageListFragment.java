@@ -42,8 +42,8 @@ public class ImageListFragment extends Fragment {
         else{
             items = ImageUrlUtils.getVegetableUrls();
         }
-
+        SimpleStringRecyclerViewAdapter adapter = new SimpleStringRecyclerViewAdapter(recyclerView, items, mainActivity);
         recyclerView.setLayoutManager(new LinearLayoutManager(mainActivity));
-        recyclerView.setAdapter(new SimpleStringRecyclerViewAdapter(recyclerView, items, mainActivity));
+        recyclerView.setAdapter(adapter);
     }
 }
