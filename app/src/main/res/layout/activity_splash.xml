@@ -5,7 +5,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/gen_white"
-    tools:context=".SplashActivity"
+    tools:context=".startup.SplashActivity"
     android:gravity="center"
     android:orientation="vertical"
     android:id="@+id/splash_linear_layout">

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -21,13 +20,11 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import com.shreyanshjain.bhajjiwalaa_customers_app.cart.CartCountSetClass;
 import com.shreyanshjain.bhajjiwalaa_customers_app.cart.CartListActivity;
 import com.shreyanshjain.bhajjiwalaa_customers_app.fragment.ImageListFragment;
-import com.shreyanshjain.bhajjiwalaa_customers_app.fragment.OfflineFragment;
 
 import java.util.ArrayList;
 import java.util.List;

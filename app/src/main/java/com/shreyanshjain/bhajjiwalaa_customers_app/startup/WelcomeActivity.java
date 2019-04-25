@@ -1,4 +1,4 @@
-package com.shreyanshjain.bhajjiwalaa_customers_app;
+package com.shreyanshjain.bhajjiwalaa_customers_app.startup;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,6 +18,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.shreyanshjain.bhajjiwalaa_customers_app.R;
+import com.shreyanshjain.bhajjiwalaa_customers_app.login.LoginActivity;
 import com.shreyanshjain.bhajjiwalaa_customers_app.utiltity.PrefManager;
 
 public class WelcomeActivity extends AppCompatActivity {

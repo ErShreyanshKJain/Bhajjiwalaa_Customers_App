@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".SplashActivity"
+            android:name=".startup.SplashActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -31,10 +31,10 @@
         <activity android:name=".SearchActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".WelcomeActivity"
+            android:name=".startup.WelcomeActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait"/>
-        <activity android:name=".LoginActivity"
+        <activity android:name=".login.LoginActivity"
             android:screenOrientation="portrait"/>
 
     </application>

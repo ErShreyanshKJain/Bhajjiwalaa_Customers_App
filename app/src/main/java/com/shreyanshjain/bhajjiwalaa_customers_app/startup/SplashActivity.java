@@ -1,4 +1,4 @@
-package com.shreyanshjain.bhajjiwalaa_customers_app;
+package com.shreyanshjain.bhajjiwalaa_customers_app.startup;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
+
+import com.shreyanshjain.bhajjiwalaa_customers_app.R;
 
 public class SplashActivity extends AppCompatActivity implements Animation.AnimationListener {
 
@@ -43,7 +45,7 @@ public class SplashActivity extends AppCompatActivity implements Animation.Anima
 //        } catch (InterruptedException e) {
 //            e.printStackTrace();
 //        }
-        Intent i = new Intent(SplashActivity.this,WelcomeActivity.class);
+        Intent i = new Intent(SplashActivity.this, WelcomeActivity.class);
         startActivity(i);
         this.finish();
     }

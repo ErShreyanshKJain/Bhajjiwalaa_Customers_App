@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "1091862268152-2b0pkdeo5b6o77m04l71ipqfd59lr2fr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bhajjiwala",
+            "certificate_hash": "8b4086c87e1c60381e94f69a4aef585900c1c6c8"
+          }
+        },
+        {
+          "client_id": "1091862268152-flvfaj5bs7vi56pl5o6flrmdf5s3udtv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bhajjiwala",
+            "certificate_hash": "880303030e69a65759f1705ad898e772f678fd86"
+          }
+        },
+        {
           "client_id": "1091862268152-sdda29ihpqm3mup1n3viv9hgldm3gri1.apps.googleusercontent.com",
           "client_type": 3
         }

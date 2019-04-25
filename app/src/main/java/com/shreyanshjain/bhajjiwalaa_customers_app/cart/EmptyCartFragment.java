@@ -1,4 +1,4 @@
-package com.shreyanshjain.bhajjiwalaa_customers_app.fragment;
+package com.shreyanshjain.bhajjiwalaa_customers_app.cart;
 
 import android.content.Context;
 import android.content.Intent;
