@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
     String mVerificationId;
     AlertDialog.Builder builder;
     AlertDialog dialog;
-    private static int LOGTIME_OUT=1500;
+//    private static int LOGTIME_OUT=1500;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -183,17 +183,12 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
 //                            dialog.show();
-                            new Handler().postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
                                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     startActivity(intent);
                                     dialog.dismiss();
                                     // close this activity
                                     finish();
-                                }
-                            }, LOGTIME_OUT);
                         }
                         else{
                             dialog.dismiss();
