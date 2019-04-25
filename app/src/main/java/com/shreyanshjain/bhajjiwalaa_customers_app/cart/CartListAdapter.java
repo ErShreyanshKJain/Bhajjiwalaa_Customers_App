@@ -1,10 +1,7 @@
 package com.shreyanshjain.bhajjiwalaa_customers_app.cart;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
@@ -13,20 +10,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import com.bumptech.glide.Glide;
 import com.shreyanshjain.bhajjiwalaa_customers_app.MainActivity;
 import com.shreyanshjain.bhajjiwalaa_customers_app.R;
-import com.shreyanshjain.bhajjiwalaa_customers_app.fragment.EmptyCartFragment;
 import com.shreyanshjain.bhajjiwalaa_customers_app.utiltity.ImageUrlUtils;
 
 import java.util.ArrayList;
 
-import static android.view.View.GONE;
 import static java.lang.Thread.sleep;
 
 public class CartListAdapter

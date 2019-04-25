@@ -15,9 +15,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/login_layout"
-        android:alpha="0.0">
+        android:alpha="0.0"
+        android:layout_centerInParent="true">
+
     <android.support.v7.widget.CardView
-        android:layout_width="350dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         app:cardElevation="30dp"
@@ -40,52 +42,92 @@
             android:focusable="true">
 
             <android.support.design.widget.TextInputEditText
-                android:id="@+id/login_username"
+                android:id="@+id/login_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Username"
-                android:inputType="text"
-                android:textColor="#333"
-                android:textSize="20sp" />
+                android:hint="Enter Phone No."
+                android:inputType="phone"
+                android:textSize="20sp"
+                android:ems="10"
+                android:maxLength="10"/>
 
         </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:id="@+id/input_box2"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginBottom="5dp">
+            <!--<android.support.design.widget.TextInputLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:id="@+id/input_box2"-->
+                <!--android:layout_marginRight="10dp"-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:layout_marginBottom="5dp">-->
 
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/login_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Password"
-                    android:inputType="textPassword"
-                    android:textColor="#333"
-                    android:textSize="20sp" />
+                <!--<android.support.design.widget.TextInputEditText-->
+                    <!--android:id="@+id/login_password"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:hint="Password"-->
+                    <!--android:inputType="textPassword"-->
+                    <!--android:textColor="#333"-->
+                    <!--android:textSize="20sp" />-->
 
-            </android.support.design.widget.TextInputLayout>
-            <android.support.v7.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:text="@string/forgot_password"
-                android:textSize="15sp"
-                android:layout_marginRight="15dp"
-                android:layout_marginBottom="5dp"/>
+            <!--</android.support.design.widget.TextInputLayout>-->
+            <!--<android.support.v7.widget.AppCompatTextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="end"-->
+                <!--android:text="@string/forgot_password"-->
+                <!--android:textSize="15sp"-->
+                <!--android:layout_marginRight="15dp"-->
+                <!--android:layout_marginBottom="5dp"/>-->
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
-    <Button
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:cardElevation="30dp"
+            app:cardCornerRadius="15dp"
+            android:id="@+id/verify_card"
+            android:layout_margin="20dp"
+            android:visibility="gone"
+            android:alpha="0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:orientation="vertical">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
+            android:id="@+id/input_box2"
+            android:focusable="true">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/verify_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Verification Code"
+                android:inputType="phone"
+                android:textSize="20sp"
+                android:ems="10"
+                android:maxLength="10"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+        </android.support.v7.widget.CardView>
+        <Button
         android:id="@+id/login_button"
-        android:layout_width="350dp"
+        android:layout_width="wrap_content"
         android:layout_height="45dp"
         android:background="@drawable/ripple_effect"
-        android:text="Login"
+        android:text="GO >"
         android:textSize="20sp"
         android:layout_below="@id/login_card"
         android:layout_marginTop="20dp"
@@ -94,13 +136,13 @@
         android:layout_marginRight="20dp"
         android:elevation="30dp"/>
 
-    <android.support.v7.widget.AppCompatTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/login_button"
-        android:layout_marginTop="5dp"
-        android:text="@string/register"
-        android:textSize="15sp"
-        android:layout_centerHorizontal="true" />
+    <!--<android.support.v7.widget.AppCompatTextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@id/login_button"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:text="@string/register"-->
+        <!--android:textSize="15sp"-->
+        <!--android:layout_centerHorizontal="true" />-->
     </RelativeLayout>
 </RelativeLayout>
