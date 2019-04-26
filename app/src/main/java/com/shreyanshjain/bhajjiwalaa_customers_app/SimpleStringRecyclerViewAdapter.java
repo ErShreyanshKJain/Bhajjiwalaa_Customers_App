@@ -50,7 +50,7 @@ public class SimpleStringRecyclerViewAdapter extends RecyclerView.Adapter<Simple
             @Override
             public void onClick(View view) {
                 ImageUrlUtils imageUrlUtils = new ImageUrlUtils();
-                imageUrlUtils.addCartListImageUrl(mValues.get(id));
+                imageUrlUtils.addCartListItem(mValues.get(id));
                 Toast.makeText(mainActivity.getApplicationContext(),"Item added to the cart",Toast.LENGTH_SHORT).show();
                 MainActivity.notificationCountCart++;
                 CartCountSetClass.setNotifyCount(MainActivity.notificationCountCart);
@@ -61,13 +61,13 @@ public class SimpleStringRecyclerViewAdapter extends RecyclerView.Adapter<Simple
         });
 
         /*
-        * TODO: Add code to get back the add button for a particular item if it is removed from the cart
-        * */
+         * TODO: Add code to get back the add button for a particular item if it is removed from the cart
+         * */
         /*
-        * We can put a condition to check for an item that whether it is currently present in the
-        * cartList or not. If it is present than remove the add button and if it is not then get
-        * put the add button(if removed) or just let it be there
-        * */
+         * We can put a condition to check for an item that whether it is currently present in the
+         * cartList or not. If it is present than remove the add button and if it is not then get
+         * put the add button(if removed) or just let it be there
+         * */
         ImageUrlUtils img = new ImageUrlUtils();
         if(!img.getCartListItem().contains(mValues.get(id)) ){
             viewHolder.add_btn.setVisibility(View.VISIBLE);
