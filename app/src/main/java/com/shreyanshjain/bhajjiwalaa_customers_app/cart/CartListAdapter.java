@@ -71,9 +71,6 @@ public class CartListAdapter
 
                 if(MainActivity.notificationCountCart == 0)
                 {
-                    /*
-                    * TODO: Add code to bring back the empty cart layout
-                    * */
 
 //                    Intent i = new Intent(mContext,MainActivity.class);
 

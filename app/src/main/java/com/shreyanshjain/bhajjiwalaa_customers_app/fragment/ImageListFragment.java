@@ -10,6 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.shreyanshjain.bhajjiwalaa_customers_app.MainActivity;
 import com.shreyanshjain.bhajjiwalaa_customers_app.R;
 import com.shreyanshjain.bhajjiwalaa_customers_app.SimpleStringRecyclerViewAdapter;
@@ -17,37 +23,69 @@ import com.shreyanshjain.bhajjiwalaa_customers_app.models.Items;
 import com.shreyanshjain.bhajjiwalaa_customers_app.utiltity.ImageUrlUtils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ImageListFragment extends Fragment {
 
     private static MainActivity mainActivity;
+    ArrayList<Items> itemList;
+    DatabaseReference mDatabaseReference;
+    ValueEventListener eventListener;
+    RecyclerView recyclerView;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mainActivity = (MainActivity)getActivity();
     }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        RecyclerView recyclerView = (RecyclerView) inflater.inflate(R.layout.layout_recyclerview_list,
-                container,false);
-        setupRecyclerView(recyclerView);
+        recyclerView = (RecyclerView) inflater.inflate(R.layout.layout_recyclerview_list,container,false);
+        if (ImageListFragment.this.getArguments().getInt("type") == 1){
+            getItemList("Fruits");
+        }
+        else{
+            getItemList("Vegetables");
+        }
         return recyclerView;
     }
 
-    private void setupRecyclerView(RecyclerView recyclerView) {
-        ArrayList<Items> items;
-        ImageUrlUtils imageUrlUtils=new ImageUrlUtils();
-        if (ImageListFragment.this.getArguments().getInt("type") == 1){
-            items=imageUrlUtils.getItemList("Fruits");
-        }
-        else{
-            items=imageUrlUtils.getItemList("Vegetables");
-        }
+    public void getItemList(final String category)
+    {
+
+        itemList = new ArrayList<>();
+
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference();
+        eventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Iterable<DataSnapshot> children=dataSnapshot.getChildren();
+                for(DataSnapshot data:children) {
+                    Items items=data.getValue(Items.class);
+                    itemList.add(items);
+                }
+                setupRecyclerView(recyclerView,itemList);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        };
+        mDatabaseReference.child("orders")
+                .child(category)
+                .addValueEventListener(eventListener);
+
+    }
+
+
+    private void setupRecyclerView(RecyclerView recyclerView, ArrayList<Items> items) {
         SimpleStringRecyclerViewAdapter adapter = new SimpleStringRecyclerViewAdapter(recyclerView, items, mainActivity);
         recyclerView.setLayoutManager(new LinearLayoutManager(mainActivity));
+        recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 }

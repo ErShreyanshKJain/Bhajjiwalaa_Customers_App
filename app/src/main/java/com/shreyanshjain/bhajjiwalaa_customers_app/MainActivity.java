@@ -76,38 +76,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             ft.commit();
         }
 
-        /*itemList = new ArrayList<>();
-
-        mAuth = FirebaseAuth.getInstance();
-
-        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-
-                if(firebaseAuth.getCurrentUser()!=null)
-                {
-                    mDatabaseReference = FirebaseDatabase.getInstance().getReference();
-                    eventListener = new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            Iterable<DataSnapshot> children=dataSnapshot.getChildren();
-                            for(DataSnapshot data:children)
-                            {
-                                Items items=data.getValue(Items.class);
-                                itemList.add(items);
-                            }
-
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    };
-                }
-            }
-        };
-        */
         viewPager = findViewById(R.id.viewpager);
         tabLayout = findViewById(R.id.tabs);
 
@@ -244,7 +212,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onResume() {
         super.onResume();
         invalidateOptionsMenu();
-//        notifyAll();
     }
 
 }
