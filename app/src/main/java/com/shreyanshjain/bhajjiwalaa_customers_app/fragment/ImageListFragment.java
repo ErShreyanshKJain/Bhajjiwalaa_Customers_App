@@ -38,6 +38,7 @@ public class ImageListFragment extends Fragment {
         super.onCreate(savedInstanceState);
         mainActivity = (MainActivity)getActivity();
     }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -66,12 +67,10 @@ public class ImageListFragment extends Fragment {
                     itemList.add(items);
                 }
                 setupRecyclerView(recyclerView,itemList);
-
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         };
         mDatabaseReference.child("orders")
@@ -79,7 +78,6 @@ public class ImageListFragment extends Fragment {
                 .addValueEventListener(eventListener);
 
     }
-
 
     private void setupRecyclerView(RecyclerView recyclerView, ArrayList<Items> items) {
         SimpleStringRecyclerViewAdapter adapter = new SimpleStringRecyclerViewAdapter(recyclerView, items, mainActivity);

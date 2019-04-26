@@ -50,7 +50,7 @@ public class SimpleStringRecyclerViewAdapter extends RecyclerView.Adapter<Simple
             @Override
             public void onClick(View view) {
                 ImageUrlUtils imageUrlUtils = new ImageUrlUtils();
-                imageUrlUtils.addCartListImageUrl(mValues.get(id));
+                imageUrlUtils.addCartListItem(mValues.get(id));
                 Toast.makeText(mainActivity.getApplicationContext(),"Item added to the cart",Toast.LENGTH_SHORT).show();
                 MainActivity.notificationCountCart++;
                 CartCountSetClass.setNotifyCount(MainActivity.notificationCountCart);

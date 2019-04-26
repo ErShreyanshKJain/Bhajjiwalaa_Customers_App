@@ -44,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
     FirebaseAuth.AuthStateListener authStateListener;
     AlertDialog.Builder builder;
     AlertDialog dialog;
+    String phone;
 //    private static int LOGTIME_OUT=1500;
 
     @Override
@@ -90,6 +91,7 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
 
+                phone=num;
                 dialog.show();
                 sendVerificationCode(num);
 //              openDialogBox();
@@ -230,6 +232,7 @@ public class LoginActivity extends AppCompatActivity {
     public void gotoMainActivity()
     {
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        intent.putExtra("Phone",phone);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
