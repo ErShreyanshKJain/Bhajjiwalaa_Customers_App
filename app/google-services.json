@@ -68,6 +68,14 @@
           }
         },
         {
+          "client_id": "1091862268152-olmc0slpunbgt64ran6llas247mtia0s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shreyanshjain.bhajjiwalaa_customers_app",
+            "certificate_hash": "880303030e69a65759f1705ad898e772f678fd86"
+          }
+        },
+        {
           "client_id": "1091862268152-sdda29ihpqm3mup1n3viv9hgldm3gri1.apps.googleusercontent.com",
           "client_type": 3
         }
