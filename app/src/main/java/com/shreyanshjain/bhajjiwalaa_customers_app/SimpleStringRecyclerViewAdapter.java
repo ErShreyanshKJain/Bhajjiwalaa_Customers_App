@@ -15,11 +15,14 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.shreyanshjain.bhajjiwalaa_customers_app.cart.CartCountSetClass;
 import com.shreyanshjain.bhajjiwalaa_customers_app.cart.SetAddButton;
+import com.shreyanshjain.bhajjiwalaa_customers_app.models.Items;
 import com.shreyanshjain.bhajjiwalaa_customers_app.utiltity.ImageUrlUtils;
+
+import java.util.ArrayList;
 
 public class SimpleStringRecyclerViewAdapter extends RecyclerView.Adapter<SimpleStringRecyclerViewAdapter.ViewHolder>{
 
-    private String[] mValues;
+    private ArrayList<Items> mValues;
     private RecyclerView mRecyclerView;
     private MainActivity mainActivity;
     String url;
@@ -35,17 +38,19 @@ public class SimpleStringRecyclerViewAdapter extends RecyclerView.Adapter<Simple
     public void onBindViewHolder(@NonNull final SimpleStringRecyclerViewAdapter.ViewHolder viewHolder, int i) {
 
         Glide.with(mainActivity)
-                .load(mValues[i])
+                .load(mValues.get(i).getUrl())
                 .centerCrop()
                 .into(viewHolder.item_image);
 
 //        CartListAdapter.setSetAddButton(SimpleStringRecyclerViewAdapter.this);
         final int id = i;
+        viewHolder.item_name.setText(mValues.get(i).getName());
+        viewHolder.item_amt.setText("Rs. "+mValues.get(i).getPrice());
         viewHolder.add_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ImageUrlUtils imageUrlUtils = new ImageUrlUtils();
-                imageUrlUtils.addCartListImageUrl(mValues[id]);
+                imageUrlUtils.addCartListImageUrl(mValues.get(id));
                 Toast.makeText(mainActivity.getApplicationContext(),"Item added to the cart",Toast.LENGTH_SHORT).show();
                 MainActivity.notificationCountCart++;
                 CartCountSetClass.setNotifyCount(MainActivity.notificationCountCart);
@@ -64,9 +69,9 @@ public class SimpleStringRecyclerViewAdapter extends RecyclerView.Adapter<Simple
         * put the add button(if removed) or just let it be there
         * */
         ImageUrlUtils img = new ImageUrlUtils();
-        if(!img.getCartListImageUrl().contains(mValues[i]) ){
+        if(!img.getCartListItem().contains(mValues.get(id)) ){
             viewHolder.add_btn.setVisibility(View.VISIBLE);
-            viewHolder.item_amt.setText("Rs.   ");
+            viewHolder.item_amt.setText("Rs. "+mValues.get(id).getPrice());
             viewHolder.item_amt.setTextSize(TypedValue.COMPLEX_UNIT_SP,20);
 //            notifyDataSetChanged();
         }else{
@@ -79,10 +84,10 @@ public class SimpleStringRecyclerViewAdapter extends RecyclerView.Adapter<Simple
 
     @Override
     public int getItemCount() {
-        return mValues.length;
+        return mValues.size();
     }
 
-    public SimpleStringRecyclerViewAdapter(RecyclerView recyclerView, String[] items, MainActivity mActivity) {
+    public SimpleStringRecyclerViewAdapter(RecyclerView recyclerView, ArrayList<Items> items, MainActivity mActivity) {
         mValues = items;
         mRecyclerView = recyclerView;
         mainActivity = mActivity;

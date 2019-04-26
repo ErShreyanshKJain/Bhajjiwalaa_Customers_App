@@ -22,9 +22,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.shreyanshjain.bhajjiwalaa_customers_app.cart.CartCountSetClass;
 import com.shreyanshjain.bhajjiwalaa_customers_app.cart.CartListActivity;
 import com.shreyanshjain.bhajjiwalaa_customers_app.fragment.ImageListFragment;
+import com.shreyanshjain.bhajjiwalaa_customers_app.models.Items;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +42,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static int notificationCountCart=0;
     static ViewPager viewPager;
     static TabLayout tabLayout;
+//    FirebaseAuth.AuthStateListener mAuthStateListener;
+//    FirebaseAuth mAuth;
+//    ArrayList<Items> itemList;
+//    DatabaseReference mDatabaseReference;
+//    ValueEventListener eventListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +75,39 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             ft.replace(R.id.main_drawer_layout,new OfflineFragment());
             ft.commit();
         }
+
+        /*itemList = new ArrayList<>();
+
+        mAuth = FirebaseAuth.getInstance();
+
+        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+
+                if(firebaseAuth.getCurrentUser()!=null)
+                {
+                    mDatabaseReference = FirebaseDatabase.getInstance().getReference();
+                    eventListener = new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            Iterable<DataSnapshot> children=dataSnapshot.getChildren();
+                            for(DataSnapshot data:children)
+                            {
+                                Items items=data.getValue(Items.class);
+                                itemList.add(items);
+                            }
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    };
+                }
+            }
+        };
+        */
         viewPager = findViewById(R.id.viewpager);
         tabLayout = findViewById(R.id.tabs);
 

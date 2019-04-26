@@ -16,6 +16,7 @@ import android.widget.Spinner;
 import com.bumptech.glide.Glide;
 import com.shreyanshjain.bhajjiwalaa_customers_app.MainActivity;
 import com.shreyanshjain.bhajjiwalaa_customers_app.R;
+import com.shreyanshjain.bhajjiwalaa_customers_app.models.Items;
 import com.shreyanshjain.bhajjiwalaa_customers_app.utiltity.ImageUrlUtils;
 
 import java.util.ArrayList;
@@ -25,12 +26,12 @@ import static java.lang.Thread.sleep;
 public class CartListAdapter
         extends RecyclerView.Adapter<CartListAdapter.ViewHolder>{
 
-    private ArrayList<String> mCartListImageUrl;
+    private ArrayList<Items> cartListItem;
     public Context mContext;
     public View mView;
 
-    public CartListAdapter(ArrayList<String> cartListImageUrl, Context context, View view){
-        mCartListImageUrl = cartListImageUrl;
+    public CartListAdapter(ArrayList<Items> cartListImageUrl, Context context, View view){
+        cartListItem = cartListImageUrl;
         mContext = context;
         mView = view;
     }
@@ -44,7 +45,7 @@ public class CartListAdapter
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder viewHolder, int i) {
-        final String url = mCartListImageUrl.get(i);
+        final String url = cartListItem.get(i).getUrl();
         Glide.with(mContext)
                 .load(url)
                 .centerCrop()
@@ -121,7 +122,7 @@ public class CartListAdapter
 
     @Override
     public int getItemCount() {
-        return mCartListImageUrl.size();
+        return cartListItem.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

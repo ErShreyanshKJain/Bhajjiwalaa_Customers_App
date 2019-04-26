@@ -4,11 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +20,9 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.shreyanshjain.bhajjiwalaa_customers_app.MainActivity;
 import com.shreyanshjain.bhajjiwalaa_customers_app.R;
 import com.shreyanshjain.bhajjiwalaa_customers_app.login.LoginActivity;
 import com.shreyanshjain.bhajjiwalaa_customers_app.utiltity.PrefManager;
@@ -31,10 +36,14 @@ public class WelcomeActivity extends AppCompatActivity {
     private int[] layouts;
     private Button btnSkip, btnNext;
     private PrefManager prefManager;
+    FirebaseAuth.AuthStateListener authStateListener;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mAuth=FirebaseAuth.getInstance();
 
         // Checking for first time launch - before calling setContentView()
         prefManager = new PrefManager(this);
@@ -120,6 +129,20 @@ public class WelcomeActivity extends AppCompatActivity {
 
     private void launchHomeScreen() {
         prefManager.setFirstTimeLaunch(false);
+//            authStateListener=new FirebaseAuth.AuthStateListener() {
+//                @Override
+//                public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+//                    FirebaseUser user=firebaseAuth.getCurrentUser();
+//                    if(user!=null)
+//                    {
+//                        Log.d("Firebase Auth","You are now signed in");
+//                        startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
+//                    }
+//                    else{
+//                        startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
+//                    }
+//                }
+//            };
         startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
         finish();
     }
@@ -201,4 +224,5 @@ public class WelcomeActivity extends AppCompatActivity {
             container.removeView(view);
         }
     }
+
 }

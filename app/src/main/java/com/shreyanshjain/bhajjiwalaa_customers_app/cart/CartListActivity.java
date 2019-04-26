@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 
 import com.shreyanshjain.bhajjiwalaa_customers_app.MainActivity;
 import com.shreyanshjain.bhajjiwalaa_customers_app.R;
+import com.shreyanshjain.bhajjiwalaa_customers_app.models.Items;
 import com.shreyanshjain.bhajjiwalaa_customers_app.utiltity.ImageUrlUtils;
 
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ public class CartListActivity extends AppCompatActivity implements Animation.Ani
         mContext = CartListActivity.this;
 
         ImageUrlUtils imageUrlUtils = new ImageUrlUtils();
-        ArrayList<String> cartList = imageUrlUtils.getCartListImageUrl();
+        ArrayList<Items> cartList = imageUrlUtils.getCartListItem();
 
         if(MainActivity.notificationCountCart==0)
             setCartLayout();
