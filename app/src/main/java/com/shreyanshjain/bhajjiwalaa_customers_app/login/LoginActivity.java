@@ -1,20 +1,16 @@
 package com.shreyanshjain.bhajjiwalaa_customers_app.login;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.CardView;
-import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -26,10 +22,10 @@ import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.shreyanshjain.bhajjiwalaa_customers_app.MainActivity;
-import com.shreyanshjain.bhajjiwalaa_customers_app.PhoneVerification;
 import com.shreyanshjain.bhajjiwalaa_customers_app.R;
 
 import java.util.concurrent.TimeUnit;
@@ -42,8 +38,8 @@ public class LoginActivity extends AppCompatActivity {
     FirebaseAuth auth;
     TextInputEditText phoneNum,verifyCode;
     CardView numCard,verifyCard;
-    PhoneVerification phone;
     String mVerificationId;
+    FirebaseAuth.AuthStateListener authStateListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
         verifyCard=findViewById(R.id.verify_card);
         verifyCode=findViewById(R.id.verify_phone);
 
+        checkFirebaseAuth();
         app_logo.animate()
                 .setDuration(700)
                 .translationY(-600f)
@@ -117,6 +114,22 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    public void checkFirebaseAuth()
+    {
+        authStateListener=new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user=firebaseAuth.getCurrentUser();
+                if(user!=null)
+                {
+                    Log.d("Firebase Auth","You are now signed in");
+                    gotoMainActivity();
+                }
+            }
+        };
+        auth.addAuthStateListener(authStateListener);
+    }
+
     public void sendVerificationCode(String mobile)
     {
         Log.d("Method","Send Verification Code");
@@ -167,9 +180,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(intent);
+                            gotoMainActivity();
                         }
                         else{
                             String message = "Somthing is wrong, we will fix it soon...";
@@ -191,6 +202,24 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
+    public void gotoMainActivity()
+    {
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        auth.addAuthStateListener(authStateListener);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        auth.removeAuthStateListener(authStateListener);
+    }
 }
 
 //    void openDialogBox()

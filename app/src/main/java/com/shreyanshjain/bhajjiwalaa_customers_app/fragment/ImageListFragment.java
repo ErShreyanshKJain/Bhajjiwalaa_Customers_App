@@ -13,7 +13,10 @@ import android.view.ViewGroup;
 import com.shreyanshjain.bhajjiwalaa_customers_app.MainActivity;
 import com.shreyanshjain.bhajjiwalaa_customers_app.R;
 import com.shreyanshjain.bhajjiwalaa_customers_app.SimpleStringRecyclerViewAdapter;
+import com.shreyanshjain.bhajjiwalaa_customers_app.models.Items;
 import com.shreyanshjain.bhajjiwalaa_customers_app.utiltity.ImageUrlUtils;
+
+import java.util.ArrayList;
 
 public class ImageListFragment extends Fragment {
 
@@ -35,12 +38,13 @@ public class ImageListFragment extends Fragment {
     }
 
     private void setupRecyclerView(RecyclerView recyclerView) {
-        String[] items=null;
+        ArrayList<Items> items;
+        ImageUrlUtils imageUrlUtils=new ImageUrlUtils();
         if (ImageListFragment.this.getArguments().getInt("type") == 1){
-            items= ImageUrlUtils.getFruitUrls();
+            items=imageUrlUtils.getItemList("Fruits");
         }
         else{
-            items = ImageUrlUtils.getVegetableUrls();
+            items=imageUrlUtils.getItemList("Vegetables");
         }
         SimpleStringRecyclerViewAdapter adapter = new SimpleStringRecyclerViewAdapter(recyclerView, items, mainActivity);
         recyclerView.setLayoutManager(new LinearLayoutManager(mainActivity));
