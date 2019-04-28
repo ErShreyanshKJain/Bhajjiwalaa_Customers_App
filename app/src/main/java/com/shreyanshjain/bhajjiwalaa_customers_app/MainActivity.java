@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     FirebaseAuth mAuth;
 //    ArrayList<Items> itemList;
     DatabaseReference mDatabaseReference;
-    String phone;
+//    String phone;
 //    ValueEventListener eventListener;
 
     @Override
@@ -58,8 +58,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent intent=getIntent();
-        phone=intent.getStringExtra("Phone");
+//        Intent intent=getIntent();
+//        phone=intent.getStringExtra("Phone");
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -94,31 +94,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             setupViewPager(viewPager);
             tabLayout.setupWithViewPager(viewPager);
         }
-        setUpUserDatabase();
+//        setUpUserDatabase();
     }
 
-    public void setUpUserDatabase()
-    {
-        String uid=mAuth.getUid();
-//        String phone=mAuth.getCurrentUser();
-        String name=phone.charAt(0)+phone.charAt(1)+"xxxxxx"+phone.charAt(8)+phone.charAt(9);
-        String token= FirebaseInstanceId.getInstance().getToken();
-        String add=" ";
-        ArrayList<Items> cart=new ArrayList<>();
-        ArrayList<Orders> orders=new ArrayList<>();
-        Users users=new Users(uid,name,phone,token,add,cart,orders);
-
-//        Log.d("Uid",mAuth.getUid());
-//        Log.d("Name",mAuth.getCurrentUser().getDisplayName());
-//        Log.d("Provider",mAuth.getCurrentUser().getProviderId());
-//        Log.d("Phone",mAuth.getCurrentUser().getPhoneNumber());
-
-        mDatabaseReference.child("Users").child(uid).setValue(users);
-        /**
-         * TODO Add users data to firebase
-         */
-
-    }
+//    public void setUpUserDatabase()
+//    {
+//        String uid=mAuth.getUid();
+////        String phone=mAuth.getCurrentUser();
+//        String name=phone.charAt(0)+phone.charAt(1)+"xxxxxx"+phone.charAt(8)+phone.charAt(9);
+//        String token= FirebaseInstanceId.getInstance().getToken();
+//        String add=" ";
+//        ArrayList<Items> cart=new ArrayList<>();
+//        ArrayList<Orders> orders=new ArrayList<>();
+//        Users users=new Users(uid,name,phone,token,add,cart,orders);
+//
+////        Log.d("Uid",mAuth.getUid());
+////        Log.d("Name",mAuth.getCurrentUser().getDisplayName());
+////        Log.d("Provider",mAuth.getCurrentUser().getProviderId());
+////        Log.d("Phone",mAuth.getCurrentUser().getPhoneNumber());
+//
+//        mDatabaseReference.child("Users").child(uid).setValue(users);
+//        /*
+//         * TODO Add users data to firebase
+//         */
+//
+//    }
 
     private void setupViewPager(ViewPager viewPager) {
         Toast.makeText(getApplicationContext(),"Setup View Pager",Toast.LENGTH_SHORT).show();

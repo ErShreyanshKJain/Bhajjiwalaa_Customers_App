@@ -44,7 +44,7 @@
                 android:layout_below="@id/cart_item_spinner"
                 android:layout_marginTop="25dp"
                 android:text="Rs.   "
-                android:textSize="@dimen/text_size_medium" />
+                android:textSize="@dimen/text_size_small" />
 
             <ImageView
                 android:id="@+id/cart_delete"

@@ -26,11 +26,11 @@
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/card_name"
             android:layout_width="203dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_alignParentRight="true"
             android:layout_marginLeft="180dp"
             android:text="Item_name"
-            android:textSize="@dimen/text_size_xmedium" />
+            android:textSize="@dimen/text_size_medium" />
 
         <Spinner
             android:id="@+id/card_spinner"
