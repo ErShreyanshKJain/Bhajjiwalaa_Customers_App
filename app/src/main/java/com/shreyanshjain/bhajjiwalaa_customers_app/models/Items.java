@@ -17,6 +17,9 @@ public class Items {
 //    @SerializedName("url")
     String url;
 
+    public Items() {
+    }
+
     public String getCategory() {
         return category;
     }

@@ -35,7 +35,8 @@
                 android:layout_below="@id/cart_item_name"
                 android:layout_marginTop="25dp"
                 android:entries="@array/quantity"
-                android:prompt="@string/quantity_prompt" />
+                android:prompt="@string/quantity_prompt"
+                android:layout_centerVertical="true"/>
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/cart_amount"
@@ -44,7 +45,7 @@
                 android:layout_below="@id/cart_item_spinner"
                 android:layout_marginTop="25dp"
                 android:text="Rs.   "
-                android:textSize="@dimen/text_size_medium" />
+                android:textSize="@dimen/text_size_small" />
 
             <ImageView
                 android:id="@+id/cart_delete"

@@ -27,9 +27,16 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.shreyanshjain.bhajjiwalaa_customers_app.MainActivity;
 import com.shreyanshjain.bhajjiwalaa_customers_app.R;
+import com.shreyanshjain.bhajjiwalaa_customers_app.models.Items;
+import com.shreyanshjain.bhajjiwalaa_customers_app.models.Orders;
+import com.shreyanshjain.bhajjiwalaa_customers_app.models.Users;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 public class LoginActivity extends AppCompatActivity {
@@ -44,6 +51,8 @@ public class LoginActivity extends AppCompatActivity {
     FirebaseAuth.AuthStateListener authStateListener;
     AlertDialog.Builder builder;
     AlertDialog dialog;
+    String phone;
+    DatabaseReference mDatabaseReference;
 //    private static int LOGTIME_OUT=1500;
 
     @Override
@@ -54,16 +63,18 @@ public class LoginActivity extends AppCompatActivity {
         builder = new AlertDialog.Builder(LoginActivity.this);
         builder.setCancelable(false); // if you want user to wait for some process to finish,
         builder.setView(R.layout.dialog_progress);
-        dialog = builder.create();
 
+        dialog = builder.create();
 
         app_logo = findViewById(R.id.login_logo);
         login_layout =  findViewById(R.id.login_layout);
-        auth = FirebaseAuth.getInstance();
         phoneNum = findViewById(R.id.login_phone);
         numCard = findViewById(R.id.login_card);
         verifyCard=findViewById(R.id.verify_card);
         verifyCode=findViewById(R.id.verify_phone);
+
+        mDatabaseReference= FirebaseDatabase.getInstance().getReference();
+        auth = FirebaseAuth.getInstance();
 
         checkFirebaseAuth();
         app_logo.animate()
@@ -90,6 +101,7 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
 
+                phone=num;
                 dialog.show();
                 sendVerificationCode(num);
 //              openDialogBox();
@@ -102,6 +114,7 @@ public class LoginActivity extends AppCompatActivity {
                         .translationX(-1000f);
 
                 verifyCard.setVisibility(View.VISIBLE);
+                verifyCode.requestFocus();
 
                 verifyCard.animate()
                         .setDuration(500)
@@ -196,40 +209,66 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
+                            setUpUserDatabase();
                             gotoMainActivity();
 //                            dialog.show();
-                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                    startActivity(intent);
-                                    dialog.dismiss();
-                                    // close this activity
-                                    finish();
+                            dialog.dismiss();
+                            // close this activity
+                            finish();
                         }
                         else{
                             dialog.dismiss();
-                            String message = "Somthing is wrong, we will fix it soon...";
+                            verifyCode.setError("Enter Valid Code");
+                            verifyCode.requestFocus();
+//                            String message = "Somthing is wrong, we will fix it soon...";
+//
+//                            if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
+//                                message = "Invalid code entered...";
+//
+//                            }
 
-                            if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
-                                message = "Invalid code entered...";
-
-                            }
-
-                            Snackbar snackbar = Snackbar.make(findViewById(R.id.parent), message, Snackbar.LENGTH_LONG);
-                            snackbar.setAction("Dismiss", new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-                                }
-                            });
-                            snackbar.show();
+//                            Snackbar snackbar = Snackbar.make(findViewById(R.id.parent), message, Snackbar.LENGTH_LONG);
+//                            snackbar.setAction("Dismiss", new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View v) {
+//
+//                                }
+//                            });
+//                            snackbar.show();
                         }
                     }
                 });
     }
 
+    public void setUpUserDatabase()
+    {
+        String uid=auth.getUid();
+//        String phone=mAuth.getCurrentUser();
+        String name=phone.charAt(0)+""+phone.charAt(1)+"xxxxxx"+phone.charAt(8)+""+phone.charAt(9);
+        String token= FirebaseInstanceId.getInstance().getToken();
+        String add=" ";
+        ArrayList<Items> cart=new ArrayList<>();
+        ArrayList<Orders> orders=new ArrayList<>();
+        Users users=new Users(uid,name,phone,token,add,cart,orders);
+
+//        Log.d("Uid",mAuth.getUid());
+//        Log.d("Name",mAuth.getCurrentUser().getDisplayName());
+//        Log.d("Provider",mAuth.getCurrentUser().getProviderId());
+//        Log.d("Phone",mAuth.getCurrentUser().getPhoneNumber());
+
+        mDatabaseReference.child("Users").child(uid).setValue(users);
+        /*
+         * TODO Add users data to firebase
+         */
+
+    }
+
+
     public void gotoMainActivity()
     {
+//        setUpUserDatabase();
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+//        intent.putExtra("Phone",phone);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }

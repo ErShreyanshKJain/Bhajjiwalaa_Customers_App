@@ -19,6 +19,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -29,10 +30,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.shreyanshjain.bhajjiwalaa_customers_app.cart.CartCountSetClass;
 import com.shreyanshjain.bhajjiwalaa_customers_app.cart.CartListActivity;
 import com.shreyanshjain.bhajjiwalaa_customers_app.fragment.ImageListFragment;
 import com.shreyanshjain.bhajjiwalaa_customers_app.models.Items;
+import com.shreyanshjain.bhajjiwalaa_customers_app.models.Orders;
+import com.shreyanshjain.bhajjiwalaa_customers_app.models.Users;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,9 +48,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     static ViewPager viewPager;
     static TabLayout tabLayout;
 //    FirebaseAuth.AuthStateListener mAuthStateListener;
-//    FirebaseAuth mAuth;
+    FirebaseAuth mAuth;
 //    ArrayList<Items> itemList;
-//    DatabaseReference mDatabaseReference;
+    DatabaseReference mDatabaseReference;
+//    String phone;
 //    ValueEventListener eventListener;
 
     @Override
@@ -54,6 +59,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+//        Intent intent=getIntent();
+//        phone=intent.getStringExtra("Phone");
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -65,6 +72,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        mAuth=FirebaseAuth.getInstance();
+        mDatabaseReference=FirebaseDatabase.getInstance().getReference();
 
         if(!isNetworkAvailable())
         {
@@ -85,7 +95,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             setupViewPager(viewPager);
             tabLayout.setupWithViewPager(viewPager);
         }
+//        setUpUserDatabase();
     }
+
+//    public void setUpUserDatabase()
+//    {
+//        String uid=mAuth.getUid();
+////        String phone=mAuth.getCurrentUser();
+//        String name=phone.charAt(0)+phone.charAt(1)+"xxxxxx"+phone.charAt(8)+phone.charAt(9);
+//        String token= FirebaseInstanceId.getInstance().getToken();
+//        String add=" ";
+//        ArrayList<Items> cart=new ArrayList<>();
+//        ArrayList<Orders> orders=new ArrayList<>();
+//        Users users=new Users(uid,name,phone,token,add,cart,orders);
+//
+////        Log.d("Uid",mAuth.getUid());
+////        Log.d("Name",mAuth.getCurrentUser().getDisplayName());
+////        Log.d("Provider",mAuth.getCurrentUser().getProviderId());
+////        Log.d("Phone",mAuth.getCurrentUser().getPhoneNumber());
+//
+//        mDatabaseReference.child("Users").child(uid).setValue(users);
+//        /*
+//         * TODO Add users data to firebase
+//         */
+//
+//    }
 
     private void setupViewPager(ViewPager viewPager) {
         Toast.makeText(getApplicationContext(),"Setup View Pager",Toast.LENGTH_SHORT).show();
@@ -195,7 +229,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             return true;
         } else {
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -213,6 +246,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onResume() {
         super.onResume();
         invalidateOptionsMenu();
+//        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
     }
-
 }
