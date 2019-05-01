@@ -4,6 +4,7 @@ package com.shreyanshjain.bhajjiwalaa_customers_app.models;
 
 public class Items {
 
+    String id;
 //    @SerializedName("category")
     String category;
 //    @SerializedName("image")
@@ -18,6 +19,14 @@ public class Items {
     String url;
 
     public Items() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getCategory() {

@@ -52,6 +52,8 @@ public class CartListAdapter
                 .into(viewHolder.itemImage);
 
         final int pos = i;
+        viewHolder.itemName.setText(cartListItem.get(i).getName());
+        
         viewHolder.itemDel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

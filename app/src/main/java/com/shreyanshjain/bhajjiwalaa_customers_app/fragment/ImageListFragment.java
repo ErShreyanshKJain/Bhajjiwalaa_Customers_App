@@ -64,6 +64,7 @@ public class ImageListFragment extends Fragment {
                 Iterable<DataSnapshot> children=dataSnapshot.getChildren();
                 for(DataSnapshot data:children) {
                     Items items=data.getValue(Items.class);
+                    items.setId(data.getKey());
                     itemList.add(items);
                 }
                 setupRecyclerView(recyclerView,itemList);

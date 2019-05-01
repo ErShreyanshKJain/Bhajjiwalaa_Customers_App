@@ -21,6 +21,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static int notificationCountCart=0;
     static ViewPager viewPager;
     static TabLayout tabLayout;
+    TextView headUserName;
 //    FirebaseAuth.AuthStateListener mAuthStateListener;
     FirebaseAuth mAuth;
 //    ArrayList<Items> itemList;
@@ -72,6 +74,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        headUserName = findViewById(R.id.header_username);
+
         mAuth=FirebaseAuth.getInstance();
         mDatabaseReference=FirebaseDatabase.getInstance().getReference();
 
@@ -94,13 +98,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             setupViewPager(viewPager);
             tabLayout.setupWithViewPager(viewPager);
         }
+
 //        setUpUserDatabase();
     }
 
 //    public void setUpUserDatabase()
 //    {
 //        String uid=mAuth.getUid();
-////        String phone=mAuth.getCurrentUser();
+//        String phone=mAuth.getCurrentUser();
 //        String name=phone.charAt(0)+phone.charAt(1)+"xxxxxx"+phone.charAt(8)+phone.charAt(9);
 //        String token= FirebaseInstanceId.getInstance().getToken();
 //        String add=" ";
@@ -108,10 +113,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //        ArrayList<Orders> orders=new ArrayList<>();
 //        Users users=new Users(uid,name,phone,token,add,cart,orders);
 //
-////        Log.d("Uid",mAuth.getUid());
-////        Log.d("Name",mAuth.getCurrentUser().getDisplayName());
-////        Log.d("Provider",mAuth.getCurrentUser().getProviderId());
-////        Log.d("Phone",mAuth.getCurrentUser().getPhoneNumber());
+//        Log.d("Uid",mAuth.getUid());
+//        Log.d("Name",mAuth.getCurrentUser().getDisplayName());
+//        Log.d("Provider",mAuth.getCurrentUser().getProviderId());
+//        Log.d("Phone",mAuth.getCurrentUser().getPhoneNumber());
 //
 //        mDatabaseReference.child("Users").child(uid).setValue(users);
 //        /*
@@ -193,6 +198,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+            finish();
         }
     }
 

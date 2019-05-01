@@ -9,20 +9,18 @@ public class Users {
     String phoneNo;
     String tokenId;
     String address;
-    ArrayList<Items> cart;
-    ArrayList<Orders> orders;
+//    ArrayList<Items> cart;
+//    ArrayList<Orders> orders;
 
     public Users() {
     }
 
-    public Users(String userId, String name, String phoneNo, String tokenId, String address, ArrayList<Items> cart, ArrayList<Orders> orders) {
+    public Users(String userId, String name, String phoneNo, String tokenId, String address) {
         this.userId = userId;
         this.name = name;
         this.phoneNo = phoneNo;
         this.tokenId = tokenId;
         this.address = address;
-        this.cart = cart;
-        this.orders = orders;
     }
 
     public String getUserId() {
@@ -65,19 +63,4 @@ public class Users {
         this.address = address;
     }
 
-    public ArrayList<Items> getCart() {
-        return cart;
-    }
-
-    public void setCart(ArrayList<Items> cart) {
-        this.cart = cart;
-    }
-
-    public ArrayList<Orders> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(ArrayList<Orders> orders) {
-        this.orders = orders;
-    }
 }

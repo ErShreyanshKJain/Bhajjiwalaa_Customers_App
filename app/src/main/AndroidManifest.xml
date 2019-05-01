@@ -35,7 +35,7 @@
             android:name=".startup.WelcomeActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait"/>
-        <activity android:name=".login.LoginActivity"
+        <activity android:name=".startup.LoginActivity"
             android:screenOrientation="portrait"/>
 
     </application>

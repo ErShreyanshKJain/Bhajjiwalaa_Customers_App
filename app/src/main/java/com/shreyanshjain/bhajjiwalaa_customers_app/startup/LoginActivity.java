@@ -1,9 +1,7 @@
-package com.shreyanshjain.bhajjiwalaa_customers_app.login;
+package com.shreyanshjain.bhajjiwalaa_customers_app.startup;
 
 import android.content.Intent;
-import android.os.Handler;
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -23,7 +21,6 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
@@ -247,9 +244,9 @@ public class LoginActivity extends AppCompatActivity {
         String name=phone.charAt(0)+""+phone.charAt(1)+"xxxxxx"+phone.charAt(8)+""+phone.charAt(9);
         String token= FirebaseInstanceId.getInstance().getToken();
         String add=" ";
-        ArrayList<Items> cart=new ArrayList<>();
-        ArrayList<Orders> orders=new ArrayList<>();
-        Users users=new Users(uid,name,phone,token,add,cart,orders);
+//        ArrayList<Items> cart=new ArrayList<>();
+//        ArrayList<Orders> orders=new ArrayList<>();
+        Users users=new Users(uid,name,phone,token,add);
 
 //        Log.d("Uid",mAuth.getUid());
 //        Log.d("Name",mAuth.getCurrentUser().getDisplayName());
@@ -257,9 +254,6 @@ public class LoginActivity extends AppCompatActivity {
 //        Log.d("Phone",mAuth.getCurrentUser().getPhoneNumber());
 
         mDatabaseReference.child("Users").child(uid).setValue(users);
-        /*
-         * TODO Add users data to firebase
-         */
 
     }
 

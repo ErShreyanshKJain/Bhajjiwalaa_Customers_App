@@ -13,8 +13,11 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.shreyanshjain.bhajjiwalaa_customers_app.cart.CartCountSetClass;
-import com.shreyanshjain.bhajjiwalaa_customers_app.cart.SetAddButton;
+//import com.shreyanshjain.bhajjiwalaa_customers_app.cart.SetAddButton;
 import com.shreyanshjain.bhajjiwalaa_customers_app.models.Items;
 import com.shreyanshjain.bhajjiwalaa_customers_app.utiltity.ImageUrlUtils;
 
@@ -25,8 +28,17 @@ public class SimpleStringRecyclerViewAdapter extends RecyclerView.Adapter<Simple
     private ArrayList<Items> mValues;
     private RecyclerView mRecyclerView;
     private MainActivity mainActivity;
+    DatabaseReference databaseReference;
+    FirebaseAuth mAuth;
     String url;
 
+    public SimpleStringRecyclerViewAdapter(RecyclerView recyclerView, ArrayList<Items> items, MainActivity mActivity) {
+        mValues = items;
+        mRecyclerView = recyclerView;
+        mainActivity = mActivity;
+        mAuth=FirebaseAuth.getInstance();
+        databaseReference= FirebaseDatabase.getInstance().getReference();
+    }
     @NonNull
     @Override
     public SimpleStringRecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -85,12 +97,6 @@ public class SimpleStringRecyclerViewAdapter extends RecyclerView.Adapter<Simple
     @Override
     public int getItemCount() {
         return mValues.size();
-    }
-
-    public SimpleStringRecyclerViewAdapter(RecyclerView recyclerView, ArrayList<Items> items, MainActivity mActivity) {
-        mValues = items;
-        mRecyclerView = recyclerView;
-        mainActivity = mActivity;
     }
 
 //    @Override

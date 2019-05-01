@@ -22,11 +22,17 @@ public class ImageUrlUtils {
     ValueEventListener eventListener;
 
 
+    public ImageUrlUtils() {
+        mAuth=FirebaseAuth.getInstance();
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference();
+    }
+
     // Methods for Cart
     public void addCartListItem(Items cartListItem) {
 
-
+        mDatabaseReference.child("Carts").child(mAuth.getUid()).push().setValue(cartListItem);
         this.cartListItem.add(0,cartListItem);
+
     }
 
     public void removeCartListImageUrl(int position) {
