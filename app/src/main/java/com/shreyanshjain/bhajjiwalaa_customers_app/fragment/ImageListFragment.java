@@ -20,7 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.shreyanshjain.bhajjiwalaa_customers_app.MainActivity;
 import com.shreyanshjain.bhajjiwalaa_customers_app.R;
 import com.shreyanshjain.bhajjiwalaa_customers_app.SimpleStringRecyclerViewAdapter;
-import com.shreyanshjain.bhajjiwalaa_customers_app.login.LoginActivity;
+import com.shreyanshjain.bhajjiwalaa_customers_app.startup.LoginActivity;
 import com.shreyanshjain.bhajjiwalaa_customers_app.models.Items;
 import com.shreyanshjain.bhajjiwalaa_customers_app.utiltity.ImageUrlUtils;
 
